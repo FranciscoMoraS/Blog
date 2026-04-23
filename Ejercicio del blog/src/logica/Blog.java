@@ -45,19 +45,35 @@ public class Blog {
 		return fechaCreacion;
 	}
 
-	public Map<Integer, publicacion> getPublicaciones() {
-		return Publicaciones;
-	}
+
 	public void crearPublicacion(String titulo, String texto, String creador) {
 		publicacion p = new publicacion(titulo, texto, creador);
 		Publicaciones.put(p.getCodigo(), p);
 	}
 	public String getPublicacion(int codigoPublicacion) throws Exception {
-		if (Publicaciones.containsKey(codigoPublicacion)) {
-			throw new Exception("Codigo de publicacion no valido");
-		}
+		revisarPublicacionExistente(codigoPublicacion);
 		publicacion p = Publicaciones.get(codigoPublicacion);
 		return p.toString();
 	}
-	
+	public Map<Integer, String> getPublicaciones(){
+		Map<Integer, String> titulos = new TreeMap<Integer, String>();
+		for (publicacion p: Publicaciones.values()) {
+			titulos.put(p.getCodigo(), p.getTitulo());
+		}
+		return titulos;
+	}
+	private void revisarPublicacionExistente(int codigoPublicacion) throws Exception {
+		if (!Publicaciones.containsKey(codigoPublicacion))
+			throw new Exception("Codigo de publicacion no encontrado");
+	}
+	public void crearComentario(int codigoPublicacion, String email, String ip, String textoComentario) throws Exception {
+		revisarPublicacionExistente(codigoPublicacion);
+		publicacion p = Publicaciones.get(codigoPublicacion);
+		p.crearComentario(email, ip, textoComentario);
+	}
+	public void borrarComentario(int codigoPublicacion, int codigoComentario) throws Exception {
+		revisarPublicacionExistente(codigoPublicacion);
+		publicacion p = Publicaciones.get(codigoPublicacion);
+		p.borrarComentario(codigoComentario);
+	}
 }
