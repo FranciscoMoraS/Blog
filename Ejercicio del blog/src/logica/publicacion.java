@@ -2,7 +2,6 @@ package logica;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class publicacion {
 	private static int consecutivo=0;
@@ -11,7 +10,7 @@ public class publicacion {
 	private String texto;
 	private String nombreCreador;
 	private LocalDateTime fechaPublicacion;
-	private List<comentario> comentarios;
+	private ArrayList<comentario> comentarios;
 	
 	public publicacion(String titulo, String texto, String nombreCreador) {
 		this.titulo=titulo;
@@ -46,15 +45,18 @@ public class publicacion {
 		comentario nuevoComentario=new comentario(email, ip, textoComentario);
 		comentarios.add(nuevoComentario);
 	}
-	public List getComentarios() {
+	public ArrayList<comentario> getComentarios() {
 		return comentarios;
 	}
 	public void borrarComentario(int codigoComentario) throws Exception {
 		if (codigoComentario >= comentarios.size())
 			throw new Exception("codigo de comentario no valido.");
+		comentarios.remove(codigoComentario);
 	}
 	public String toString() {
-		
+		String resultado;
+		resultado= titulo + "\n"+ texto + "\n"+ nombreCreador + " - " + fechaPublicacion.toString();
+		return resultado;
 	}
 	
 	
