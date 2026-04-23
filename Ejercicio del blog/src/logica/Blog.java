@@ -76,4 +76,9 @@ public class Blog {
 		publicacion p = Publicaciones.get(codigoPublicacion);
 		p.borrarComentario(codigoComentario);
 	}
+	public String toString() {
+		String resultado= nombre + "\n"+ "Creado el: "+ fechaCreacion;
+		resultado += "\n"+ "Descripcion:" + descripcion;
+		return resultado;
+	}
 }
