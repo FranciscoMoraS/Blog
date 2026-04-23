@@ -15,7 +15,9 @@ public class comentario {
 		fechaCreacion= LocalDateTime.now();
 	}
 	public String toString() {
-		
+		String resultado= email +" - "+ip+" - "+ fechaCreacion.toString()+"\n";
+		resultado += texto + "\n";
+		return resultado;
 	}
 	
 }
