@@ -2,7 +2,7 @@ package logica;
 
 import java.time.LocalDateTime;
 
-public class comentario {
+class comentario {
 	private LocalDateTime fechaCreacion;
 	private String email;
 	private String ip;

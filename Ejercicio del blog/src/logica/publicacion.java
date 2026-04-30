@@ -3,7 +3,7 @@ package logica;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class publicacion {
+class publicacion {
 	private static int consecutivo=0;
 	private int codigo;
 	private String titulo;
