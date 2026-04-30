@@ -45,9 +45,9 @@ public class publicacion {
 		comentario nuevoComentario=new comentario(email, ip, textoComentario);
 		comentarios.add(nuevoComentario);
 	}
-	public ArrayList<comentario> getComentarios() {
-		return comentarios;
-	}
+	//public ArrayList<comentario> getComentarios() {
+	//	return comentarios;
+	//}
 	public void borrarComentario(int codigoComentario) throws Exception {
 		if (codigoComentario >= comentarios.size())
 			throw new Exception("codigo de comentario no valido.");
@@ -56,6 +56,11 @@ public class publicacion {
 	public String toString() {
 		String resultado;
 		resultado= titulo + "\n"+ texto + "\n"+ nombreCreador + " - " + fechaPublicacion.toString();
+		resultado+= "\n";
+		for (int i=0; i< comentarios.size();i++) {
+			resultado+= comentarios.get(i).toString();
+			resultado+= "\n";
+		}
 		return resultado;
 	}
 	
